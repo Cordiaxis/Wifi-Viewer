@@ -107,9 +107,8 @@ class _WifiListScreenState extends State<WifiListScreen> {
                 SizedBox(height: 24),
                 ElevatedButton.icon(
                   onPressed: () async {
-                    // Reintentar detección de ROOT
                     await init();
-                    setState(() {}); // Reconstruir para reflejar cambios
+                    setState(() {});
                   },
                   icon: Icon(Icons.refresh),
                   label: Text('Reintentar'),
@@ -193,7 +192,7 @@ class _WifiListScreenState extends State<WifiListScreen> {
                 Text(network.password),
                 SizedBox(height: 4),
                 Text(
-                  '🔒 ${network.securityType}',
+                  network.securityType,
                   style: TextStyle(fontSize: 12, color: Colors.grey[600]),
                 ),
               ],
@@ -202,12 +201,10 @@ class _WifiListScreenState extends State<WifiListScreen> {
             trailing: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                // Botón QR
                 IconButton(
                   icon: Icon(Icons.qr_code),
                   onPressed: () => _showQrCode(network),
                 ),
-                // Botón Copiar
                 IconButton(
                   icon: Icon(Icons.copy),
                   onPressed: () => _copyPassword(network.password),
@@ -221,7 +218,6 @@ class _WifiListScreenState extends State<WifiListScreen> {
   }
 
   void _showQrCode(WifiNetwork network) {
-    // Convertir tipo de seguridad al formato QR
     String qrSecurityType = 'WPA';
     if (network.securityType.contains('WPA')) {
       qrSecurityType = 'WPA';

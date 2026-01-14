@@ -89,7 +89,7 @@ class WifiPasswordExtractor {
           ssid = ssidElement.innerText.replaceAll('"', '');
         }
 
-        // Extraer Password (PreSharedKey)
+        // Extraer Password
         final pskElement = wifiConfig
             .findElements('string')
             .firstWhere(
@@ -101,7 +101,6 @@ class WifiPasswordExtractor {
           password = pskElement.innerText.replaceAll('"', '');
         }
 
-        // Detectar si está oculta (HiddenSSID)
         final hiddenElement = wifiConfig
             .findElements('boolean')
             .firstWhere(
@@ -212,6 +211,6 @@ class WifiPasswordExtractor {
       return 'Open';
     }
 
-    return 'WPA/WPA2'; // Default
+    return 'WPA/WPA2';
   }
 }
